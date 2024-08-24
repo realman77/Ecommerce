@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
     <!-- ========================= SECTION MAIN ========================= -->
@@ -34,9 +35,9 @@
               </a>
               <figcaption class="info-wrap">
                 <a href='{% static "./product-detail.html" %}' class="title"
-                  >Just another product name</a
+                  >{{product.name}}</a
                 >
-                <div class="price mt-1">$179.00</div>
+                <div class="price mt-1">{{ product.price|intcomma }} so'm</div>
                 <!-- price-wrap.// -->
               </figcaption>
             </div>

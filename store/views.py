@@ -7,14 +7,14 @@ from .models import Product
 # Create your views here.
 
 
-# First method
-class ProductsView(View):
-    async def get(self, request):
-        products = await sync_to_async(Product.objects.filter)(is_available=True)
-        context = {
-            "products": products,
-        }
-        return TemplateResponse(request, "home.html", context)
+# # First method
+# class ProductsView(View):
+#     async def get(self, request):
+#         products = await sync_to_async(Product.objects.filter)(is_available=True)
+#         context = {
+#             "products": products,
+#         }
+#         return TemplateResponse(request, "home.html", context)
     
 
 # # Second method
@@ -28,3 +28,12 @@ class ProductsView(View):
 #         }
         
 #         return render(request, "home.html", context)
+
+def pr(request):
+    products = Product.objects.filter(is_available=True)
+    context = {"products": products}
+    return render(request, "home.html", context)
+
+class StoreView(View):
+    async def get(self, request, *args,) -> TemplateResponse:
+        return TemplateResponse(request, 'store.html')
