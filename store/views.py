@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.template.response import TemplateResponse
 from django.views import View
 from asgiref.sync import sync_to_async
+
+from category.models import Category
 from .models import Product
 
 # Create your views here.
@@ -29,11 +31,32 @@ from .models import Product
         
 #         return render(request, "home.html", context)
 
-def pr(request):
-    products = Product.objects.filter(is_available=True)
-    context = {"products": products}
-    return render(request, "home.html", context)
-
 class StoreView(View):
-    async def get(self, request, *args,) -> TemplateResponse:
-        return TemplateResponse(request, 'store.html')
+    async def get(self, request, category_slug=None) -> TemplateResponse:
+        if category_slug:
+            category = await sync_to_async(get_object_or_404)(Category, slug=category_slug)
+            products = await sync_to_async(Product.objects.filter)(category=category)
+
+        if category_slug is None:
+            products = await sync_to_async(Product.objects.filter)(is_available=True)
+        context = {
+            "products": products,
+            'count': await sync_to_async(products.count)(),
+            }
+        return TemplateResponse(request, 'store.html', context)
+
+
+class IndexView(View):
+    async def get(self, request):
+        return TemplateResponse(request, "index.html")
+    
+
+class ProductDetailView(View):
+    async def get(self, request, product_slug):
+        product = await sync_to_async(get_object_or_404)(Product, slug=product_slug)
+        context = {
+            'product': product,
+            "sizes": product.size.all(),
+            "colors": product.color.all(),
+            }
+        return TemplateResponse(request, "product-detail.html", context)

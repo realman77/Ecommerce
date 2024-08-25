@@ -3,6 +3,20 @@ from django.db import models
 from category.models import Category
 
 # Create your models here.
+class Size(models.Model):
+    size = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.size
+
+
+class Color(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     slug  = models.SlugField(max_length=100, unique=True)
@@ -13,9 +27,10 @@ class Product(models.Model):
     stock = models.IntegerField(blank=True, null=True, default=100)
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
+    size = models.ManyToManyField(Size, blank=False)
+    color = models.ManyToManyField(Color, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
-    
