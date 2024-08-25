@@ -63,12 +63,12 @@
             <!-- row.// -->
             <hr />
 			{% if product.stock > 0 %}
-            <a href="./product-detail.html" class="btn btn-primary">
+            <a href="{% url 'add_cart' product.id %}" class="btn btn-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
             </a>
 			{% else %}
-			<h5 class="text-danger">Out for stock</h5>
+			<h5 class="text-danger">Out of stock</h5>
 			{% endif %}
           </article>
           <!-- product-info-aside .// -->

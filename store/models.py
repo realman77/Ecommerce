@@ -29,6 +29,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
     size = models.ManyToManyField(Size, blank=False)
     color = models.ManyToManyField(Color, blank=False)
+    brand = models.CharField(max_length=100, default="")
+    properties = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -27,5 +27,6 @@ urlpatterns = ([
     path("", ProductsView.as_view(), name="home"),
     # path("", include("adana_app.urls")),
     # path("categories/", include("category.urls")),
-    path('store/', include('store.urls'))
+    path('store/', include('store.urls')),
+    path("cart/", include("cart.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
