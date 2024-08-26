@@ -146,7 +146,11 @@
 						</div> <!-- price-wrap.// -->
 					</a>
 				</div>
+				{% if product not in featured %}
 				<a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-primary">Add to cart </a>
+				{% elif product in featured %}
+				<a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-success">Added to cart </a>
+				{% endif %}
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->

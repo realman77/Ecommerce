@@ -1,16 +1,26 @@
-from asgiref.sync import sync_to_async
-from django.db.models import QuerySet
+from asgiref.sync import async_to_sync
+from django.db.models import QuerySet, Count
 from django.http import QueryDict
 from django.shortcuts import render
+
+from cart.models import Cart, CartItem
+from cart.views import AddCartView
 
 from .models import Category
 
 
 def menu_links(request):
-    categories = (Category.objects.all())
+    sample = AddCartView()
+    categories = Category.objects.alias(total=Count('product')).filter(total__gt=0)
+    try:
+        cart = Cart.objects.get(session_id=async_to_sync(sample._cart_id)(request))
+    except Cart.DoesNotExist:
+        cart = None
+    cart_item = CartItem.objects.filter(cart=cart)
+    cart_count = cart_item.count()
     context = {
         'categories': categories,
+        'cart_count': cart_count,
     }
     print(context)
     return context
-

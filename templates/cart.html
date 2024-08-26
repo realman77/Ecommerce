@@ -52,7 +52,7 @@
                       </div>
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control px-1"
                         value="{{item.quantity}}"
                       />
                       <div class="input-group-append">
@@ -119,7 +119,7 @@
               Checkout
             </a>
             <a
-              href='{% static "./store.html" %}'
+              href='{% url "store" %}'
               class="btn btn-light btn-block"
               >Continue Shopping</a
             >

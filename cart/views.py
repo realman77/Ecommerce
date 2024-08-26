@@ -1,6 +1,7 @@
 from asgiref.sync import sync_to_async
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Sum
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render, aget_object_or_404
 from django.views import View
 from django.template.response import TemplateResponse
@@ -63,9 +64,9 @@ class AddCartView(View):
                     quantity=1)
                 await cart_item.asave()
             
-            return redirect("cart")
-        else:
-            return redirect("store")
+        return redirect(request.META.get("HTTP_REFERER", ""))
+        # else:
+        #     return redirect("store")
     
 
 class SubtractCartView(View):
