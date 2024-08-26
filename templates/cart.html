@@ -2,7 +2,7 @@
 <section class="section-content padding-y bg">
   <div class="container">
     <!-- ============================ COMPONENT 1 ================================= -->
-
+	{% if cart_items %}
     <div class="row">
       <aside class="col-lg-9">
         <div class="card">
@@ -130,6 +130,12 @@
       </aside>
       <!-- col.// -->
     </div>
+	{% else %}
+	<div class="alert alert-warning text-center">
+		<h5 class="pt-2">Your cart is empty</h5>
+	</div>
+	<a href="{% url 'store' %}" class="btn btn-primary">Go shopping</a>
+	{% endif %}
     <!-- row.// -->
     <!-- ============================ COMPONENT 1 END .// ================================= -->
   </div>
