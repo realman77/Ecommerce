@@ -71,9 +71,10 @@ class ProductDetailView(View):
             cart = None
         try:
             cart_item = await CartItem.objects.aget(product=product, cart=cart)
-            cart_item = await sync_to_async(lambda: cart_item.product)()
+            cart_item = await sync_to_async(CartItem.objects.filter(cart__session_id=await self.get_cart(request)).exists)()
+            print(cart_item)
         except CartItem.DoesNotExist:
-            cart_item = 'None'
+            cart_item = None
         context = {
             'product': product,
             "sizes": product.size.all(),

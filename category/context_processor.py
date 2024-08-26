@@ -17,7 +17,7 @@ def menu_links(request):
     except Cart.DoesNotExist:
         cart = None
     cart_item = CartItem.objects.filter(cart=cart)
-    cart_count = cart_item.count()
+    cart_count = sum([i.quantity for i in cart_item])
     context = {
         'categories': categories,
         'cart_count': cart_count,

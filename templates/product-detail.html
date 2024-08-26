@@ -63,7 +63,7 @@
             <!-- row.// -->
             <hr />
 			{% if product.stock > 0 %}
-			{% if featured != product %}
+			{% if not featured %}
             <a href="{% url 'add_cart' product.id %}" class="btn btn-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
@@ -71,7 +71,11 @@
 			{% else %}
 			<a href="{% url 'add_cart' product.id %}" class="btn btn-success">
               <span class="text">Added to cart</span>
-              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-check"></i>
+            </a>
+			<a href="{% url 'cart' %}" class="btn btn-outline-success">
+              <span class="text"> View the cart</span>
+              <i class="far fa-eye"></i>
             </a>
 			{% endif %}
 			{% else %}
