@@ -12,7 +12,7 @@ from store.models import Product
 # Create your views here.
 
 class CartView(View):
-    async def get(self, request):
+    async def get(self, request, total=0, tax=0, gen_total=0):
         cart_items = ''
         try:
             sample = AddCartView()
