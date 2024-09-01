@@ -1,5 +1,149 @@
 [
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractBaseUser",
+        "importPath": "django.contrib.auth.base_user",
+        "description": "django.contrib.auth.base_user",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.base_user",
+        "documentation": {}
+    },
+    {
+        "label": "BaseUserManager",
+        "importPath": "django.contrib.auth.base_user",
+        "description": "django.contrib.auth.base_user",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.base_user",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -25,27 +169,11 @@
         "documentation": {}
     },
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -63,6 +191,51 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "account.migrations.0001_initial",
+        "description": "account.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Account',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('password', models.CharField(max_length=128, verbose_name='password')),",
+        "detail": "account.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "AccountAdmin",
+        "kind": 6,
+        "importPath": "account.admin",
+        "description": "account.admin",
+        "peekOfCode": "class AccountAdmin(admin.ModelAdmin):\n    list_display = ('id', 'first_name', 'last_name', 'email', \"username\", \"last_login\", \"date_joined\", 'is_active', 'is_staff', 'is_superadmin')\n    list_display_links = (\"first_name\", \"last_name\", \"email\",)\n    ordering = (\"-date_joined\",)\n    # filter_horizontal = ()\n    # list_filter = ()\n    # fieldsets = ()\n    search_fields = (\"first_name\", \"last_name\", \"username\",)\n    sortable_by = (\"first_name\", 'last_name', \"username\",)\n    # list_filter = ('is_staff', 'is_superuser')",
+        "detail": "account.admin",
+        "documentation": {}
+    },
+    {
+        "label": "AccountConfig",
+        "kind": 6,
+        "importPath": "account.apps",
+        "description": "account.apps",
+        "peekOfCode": "class AccountConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'account'",
+        "detail": "account.apps",
+        "documentation": {}
+    },
+    {
+        "label": "MyAccountManager",
+        "kind": 6,
+        "importPath": "account.models",
+        "description": "account.models",
+        "peekOfCode": "class MyAccountManager(BaseUserManager):\n    def create_user(self, first_name, last_name, username, email, password=None, user_company=None):\n        if not email:\n            raise ValueError('Invalid Email')\n        if not username:\n            raise ValueError('Invalid Username')\n        user = self.model(\n            email=self.normalize_email(email),\n            username=username,\n            first_name=first_name,",
+        "detail": "account.models",
+        "documentation": {}
+    },
+    {
+        "label": "Account",
+        "kind": 6,
+        "importPath": "account.models",
+        "description": "account.models",
+        "peekOfCode": "class Account(AbstractBaseUser):\n    first_name = models.CharField(max_length=50)\n    last_name = models.CharField(max_length=50)\n    username = models.CharField(max_length=50, unique=True)\n    email = models.EmailField(max_length=100, unique=True)\n    phone_number = models.CharField(max_length=100, unique=True, null=True, blank=True)\n    user_company = models.CharField(max_length=255, default=None)\n    date_joined = models.DateTimeField(auto_now_add=True)\n    last_login = models.DateTimeField(auto_now=True,)\n    is_admin = models.BooleanField(default=False)",
+        "detail": "account.models",
         "documentation": {}
     },
     {
@@ -106,7 +279,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'category',",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -115,7 +288,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'category',\n    'account'\n]",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -133,7 +306,16 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "ROOT_URLCONF = 'adana.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [BASE_DIR/\"templates\"],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "peekOfCode": "ROOT_URLCONF = 'adana.urls'\nAUTH_USER_MODEL = \"account.Account\" \nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [BASE_DIR/\"templates\"],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "detail": "adana.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "adana.settings",
+        "description": "adana.settings",
+        "peekOfCode": "AUTH_USER_MODEL = \"account.Account\" \nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [BASE_DIR/\"templates\"],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -279,6 +461,33 @@
         "description": "adana.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "adana.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "category.migrations.0001_initial",
+        "description": "category.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=100, unique=True)),",
+        "detail": "category.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryConfig",
+        "kind": 6,
+        "importPath": "category.apps",
+        "description": "category.apps",
+        "peekOfCode": "class CategoryConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'category'",
+        "detail": "category.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "kind": 6,
+        "importPath": "category.models",
+        "description": "category.models",
+        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    description = models.TextField(blank=True)\n    image = models.ImageField(blank=True)\n    def __str__(self):\n        return self.name",
+        "detail": "category.models",
         "documentation": {}
     },
     {

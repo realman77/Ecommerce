@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'category',
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'adana.urls'
-
+AUTH_USER_MODEL = "account.Account" 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
