@@ -40,6 +40,54 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -69,6 +117,22 @@
         "description": "django.contrib",
         "isExtraImport": true,
         "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -117,6 +181,22 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -177,11 +257,68 @@
         "documentation": {}
     },
     {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "importPath": "adana.settings",
+        "description": "adana.settings",
+        "isExtraImport": true,
+        "detail": "adana.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "importPath": "adana.settings",
+        "description": "adana.settings",
+        "isExtraImport": true,
+        "detail": "adana.settings",
+        "documentation": {}
+    },
+    {
+        "label": "Product",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Product",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "category.models",
+        "description": "category.models",
+        "isExtraImport": true,
+        "detail": "category.models",
         "documentation": {}
     },
     {
@@ -288,7 +425,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'category',\n    'account'\n]",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'category',\n    'account',\n    'store'",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -378,7 +515,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_ROOT = BASE_DIR/'media'",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_URL = \"/media/\"",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -387,7 +524,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR/'media'",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -396,7 +533,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -405,7 +542,7 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "STATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR/\"static\"\nSTATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -414,7 +551,16 @@
         "kind": 5,
         "importPath": "adana.settings",
         "description": "adana.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATICFILES_DIRS = [\n    \"adana/static\"\n]\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "adana.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "adana.settings",
+        "description": "adana.settings",
+        "peekOfCode": "MEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR/'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "adana.settings",
         "documentation": {}
     },
@@ -441,7 +587,7 @@
         "kind": 5,
         "importPath": "adana.urls",
         "description": "adana.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", home,name=\"home\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", home,name=\"home\"),\n]+static(MEDIA_URL,document_root= MEDIA_ROOT)",
         "detail": "adana.urls",
         "documentation": {}
     },
@@ -450,7 +596,7 @@
         "kind": 2,
         "importPath": "adana.views",
         "description": "adana.views",
-        "peekOfCode": "def home(request):\n    return render(request, \"home.html\")",
+        "peekOfCode": "def home(request):\n    products = Product.objects.filter(is_available=True)\n    context = {\n        \"products\": products,\n    }\n    return render(request, \"home.html\",context)",
         "detail": "adana.views",
         "documentation": {}
     },
@@ -473,6 +619,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "category.migrations.0002_delete_category",
+        "description": "category.migrations.0002_delete_category",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('category', '0001_initial'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Category',\n        ),\n    ]",
+        "detail": "category.migrations.0002_delete_category",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "category.migrations.0003_initial",
+        "description": "category.migrations.0003_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('category', '0002_delete_category'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "category.migrations.0003_initial",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryAdmin",
+        "kind": 6,
+        "importPath": "category.admin",
+        "description": "category.admin",
+        "peekOfCode": "class CategoryAdmin(admin.ModelAdmin):  \n    list_display = (\"name\",'slug')\n    prepopulated_fields = {\"slug\": (\"name\",)}\n# Register your models here.\nadmin.site.register(Category, CategoryAdmin)",
+        "detail": "category.admin",
+        "documentation": {}
+    },
+    {
         "label": "CategoryConfig",
         "kind": 6,
         "importPath": "category.apps",
@@ -486,8 +659,44 @@
         "kind": 6,
         "importPath": "category.models",
         "description": "category.models",
-        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    description = models.TextField(blank=True)\n    image = models.ImageField(blank=True)\n    def __str__(self):\n        return self.name",
+        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    description = models.TextField(blank=True)\n    image = models.ImageField(upload_to=\"photo/category/\" ,blank=True)\n    slug = models.SlugField(max_length=50,unique=True)\n    def __str__(self):\n        return self.name",
         "detail": "category.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "store.migrations.0001_initial",
+        "description": "store.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('category', '0003_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Product',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "store.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "ProductAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class ProductAdmin(admin.ModelAdmin):\n    list_display = (\"name\",\"price\",\"stock\",\"category\",\"updated_date\",\"is_available\")\n    prepopulated_fields = {\"slug\":(\"name\",)}\nadmin.site.register(Product, ProductAdmin)",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "StoreConfig",
+        "kind": 6,
+        "importPath": "store.apps",
+        "description": "store.apps",
+        "peekOfCode": "class StoreConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'store'",
+        "detail": "store.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Product",
+        "kind": 6,
+        "importPath": "store.models",
+        "description": "store.models",
+        "peekOfCode": "class Product(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    slug = models.SlugField(max_length=100,unique=True)\n    description = models.TextField(max_length=500,blank=True) \n    price = models.IntegerField()    \n    image = models.ImageField(upload_to=\"photo/products\")\n    stock = models.IntegerField(default=100)\n    is_available = models.BooleanField(default=True)\n    category = models.ForeignKey(Category,on_delete=models.CASCADE)\n    created_date = models.DateTimeField(auto_now_add=True)",
+        "detail": "store.models",
         "documentation": {}
     },
     {
