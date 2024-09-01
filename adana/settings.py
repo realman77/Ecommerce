@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "account",
     'store',
     "cart",
+    "login",
+    "widget_tweaks",
 ]
 AUTH_USER_MODEL = "account.Account"
 

@@ -11,19 +11,126 @@
 
 <link href='{% static "images/favicon.ico" %}' rel="shortcut icon" type="image/x-icon">
 
+<!-- Bootstrap4 files CSS first -->
+<link href='{% static "css/bootstrap.css" %}' rel="stylesheet" type="text/css"/>
+<!-- Font awesome 5 -->
+<link href='{% static "fonts/fontawesome/css/all.min.css" %}' type="text/css" rel="stylesheet">
+<!-- custom style -->
+<link href='{% static "css/ui.css" %}' rel="stylesheet" type="text/css"/>
+<link href='{% static "css/responsive.css" %}' rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+
+</head>
+
+<body>
+
+
+<header class="section-header">
+  <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom"> 
+    <div class="container">
+      <a href='{% url "home" %}' class="brand-wrap">
+        <img class="logo" src='{% static "./images/logo.png" %}'>
+      </a> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarTop4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTop4">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle dark" data-toggle="dropdown">Language</a>
+            <ul class="dropdown-menu small">
+              <li><a class="dropdown-item" href="#">English</a></li>
+              <li><a class="dropdown-item" href="#">Arabic</a></li>
+              <li><a class="dropdown-item" href="#">Russian </a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle dark" data-toggle="dropdown">USD</a>
+            <ul class="dropdown-menu small">
+              <li><a class="dropdown-item" href="#">EUR</a></li>
+              <li><a class="dropdown-item" href="#">AED</a></li>
+              <li><a class="dropdown-item" href="#">RUBL </a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item"><a href="#" class="nav-link dark"> <i class="fa fa-envelope"></i> Email </a></li>
+          <li class="nav-item"><a href="#" class="nav-link dark"> <i class="fa fa-phone"></i> Call us </a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle dark" data-toggle="dropdown">Welcome {{user.first_name}}!</a>
+            <ul class="dropdown-menu small">
+              <li><a class="dropdown-item" href='{% url "signout" %}'>Sign out</a></li>
+            </ul>
+          </li> 
+          {% else %}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome guest!</a>
+            <ul class="dropdown-menu small">
+              <li><a class="dropdown-item" href='{% url "signin" %}'>Sign in</a></li>
+              <li><a class="dropdown-item" href='{% url "register" %}'>Register</a></li>
+            </ul>
+          </li> 
+          {% endif %}
+<li class="nav-item cart-container"> 
+  <a href='{% url "cart" %}' class="nav-link">
+    <div class="icon icon-sm rounded-circle border position-relative"> 
+      <i class="fa fa-shopping-cart"></i> 
+      <span class="badge badge-pill badge-danger notify">
+        {{cart_count}}
+      </span>
+    </div>
+  </a>
+</li>
+        </ul> 
+      </div> 
+    </div> 
+  </nav>
+
+<section class="header-main border-bottom">
+	<div class="container">
+<div class="row align-items-center"> 
+	<div class="col-lg-8 col-md-8 col-sm-12 my-1">
+		<div class="category-wrap dropdown d-inline-block float-right">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
+				<i class="fa fa-bars"></i> All categories
+			</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="{% url 'store' %}"> All products</a>
+				{% for cat in categories %}
+				<a class="dropdown-item" href="{% url 'category_slug' cat.slug %}">{{cat.name|title}}</a>
+				{% endfor %}
+			</div>
+		</div>  <!-- category-wrap.// -->
+	</div> <!-- col.// -->
+	
+	<div class="col-lg-4 col-md-4 col-sm-12 my-1">
+		<form action="{% url 'search' %}" class="search" method="get">
+			<div class="input-group w-100">
+			    <input type="text" class="form-control" name="keyword" value="{{keyword}}" placeholder="Search">
+			    <div class="input-group-append">
+			      <button class="btn btn-primary" type="submit">
+			        <i class="fa fa-search"></i>
+			      </button>
+			    </div>
+		    </div>
+		</form> <!-- search-wrap .end// -->
+	</div> <!-- col.// -->
+	
+</div> <!-- row.// -->
+	</div> <!-- container.// -->
+</section> <!-- header-main .// -->
+
+
+
+
+</header> <!-- section-header.// -->
+
 <!-- jQuery -->
 <script src='{% static "js/jquery-2.0.0.min.js" %}' type="text/javascript"></script>
 
 <!-- Bootstrap4 files-->
 <script src='{% static "js/bootstrap.bundle.min.js" %}' type="text/javascript"></script>
-<link href='{% static "css/bootstrap.css" %}' rel="stylesheet" type="text/css"/>
-
-<!-- Font awesome 5 -->
-<link href='{% static "fonts/fontawesome/css/all.min.css" %}' type="text/css" rel="stylesheet">
-
-<!-- custom style -->
-<link href='{% static "css/ui.css" %}' rel="stylesheet" type="text/css"/>
-<link href='{% static "css/responsive.css" %}' rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
 <!-- custom javascript -->
 <script src='{% static "js/script.js" %}' type="text/javascript"></script>
@@ -39,97 +146,5 @@ $(document).ready(function() {
 // jquery end
 </script>
 
-</head>
-<body>
-
-
-<header class="section-header">
-<nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
-<div class="container">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTop4">
-    <ul class="navbar-nav mr-auto">
-    	<li class="nav-item dropdown">
-		 	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">   Language </a>
-		    <ul class="dropdown-menu small">
-				<li><a class="dropdown-item" href="#">English</a></li>
-				<li><a class="dropdown-item" href="#">Arabic</a></li>
-				<li><a class="dropdown-item" href="#">Russian </a></li>
-		    </ul>
-		</li>
-		<li class="nav-item dropdown">
-			<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> USD </a>
-			<ul class="dropdown-menu small">
-				<li><a class="dropdown-item" href="#">EUR</a></li>
-				<li><a class="dropdown-item" href="#">AED</a></li>
-				<li><a class="dropdown-item" href="#">RUBL </a></li>
-		    </ul>
-		</li>
-    </ul>
-    <ul class="navbar-nav">
-		<li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-		<li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
-	</ul> <!-- list-inline //  -->
-  </div> <!-- navbar-collapse .// -->
-</div> <!-- container //  -->
-</nav>
-
-<section class="header-main border-bottom">
-	<div class="container">
-<div class="row align-items-center">
-	<div class="col-lg-2 col-md-3 col-6">
-		<a href='{% url "home" %}' class="brand-wrap">
-			<img class="logo" src='{% static "./images/logo.png" %}'>
-		</a> <!-- brand-wrap.// -->
-	</div>
-	<div class="col-lg col-sm col-md col-6 flex-grow-0">
-		<div class="category-wrap dropdown d-inline-block float-right">
-			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
-				<i class="fa fa-bars"></i> All categories
-			</button>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="{% url 'store' %}"> All products</a>
-				{% for cat in categories %}
-				<a class="dropdown-item" href="{% url 'category_slug' cat.slug %}">{{cat.name|title}}</a>
-				{% endfor %}
-			</div>
-		</div>  <!-- category-wrap.// -->
-	</div> <!-- col.// -->
-	<a href='{% url "store" %}' class="btn btn-outline-primary">Store</a>
-	<div class="col-lg  col-md-12 col-sm-12 col">
-		<form action="{% url 'search' %}" class="search" method="get">
-			<div class="input-group w-100">
-			    <input type="text" class="form-control" name="keyword" value="{{keyword}}" style="width:60%;" placeholder="Search">
-			    
-			      <button class="btn btn-primary" type="submit">
-			        <i class="fa fa-search"></i>
-			      </button>
-			    
-		    </div>
-		</form> <!-- search-wrap .end// -->
-	</div> <!-- col.// -->
-	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
-				<div class="d-flex justify-content-end mb-3 mb-lg-0">
-					<div class="widget-header">
-						<small class="title text-muted">Welcome guest!</small>
-						<div> 
-							<a href='{% static "./signin.html" %}'>Sign in</a> <span class="dark-transp"> | </span>
-							<a href='{% static "./register.html" %}'> Register</a>
-						</div>
-					</div>
-					<a href='{% url "cart" %}' class="widget-header pl-3 ml-3">
-						<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-						<span class="badge badge-pill badge-danger pt-2 notify">{{cart_count}}</span>
-					</a>
-				</div> <!-- widgets-wrap.// -->
-			</div> <!-- col.// -->
-</div> <!-- row.// -->
-	</div> <!-- container.// -->
-</section> <!-- header-main .// -->
-
-
-
-
-</header> <!-- section-header.// -->
+</body>
+</html>

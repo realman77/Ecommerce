@@ -23,7 +23,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=999999999, decimal_places=2, blank=False, null=False)
     # decimal_places = models.DecimalField()
-    image = models.ImageField(blank=True, upload_to="products/%Y/%m/%d")
+    image = models.ImageField(blank=False, upload_to="products/%Y/%m/%d")
     stock = models.IntegerField(blank=True, null=True, default=100)
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
