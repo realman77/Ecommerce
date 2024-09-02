@@ -216,6 +216,14 @@
         "documentation": {}
     },
     {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -246,6 +254,30 @@
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -297,11 +329,43 @@
         "documentation": {}
     },
     {
+        "label": "Product",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "category.models",
+        "description": "category.models",
+        "isExtraImport": true,
+        "detail": "category.models",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "category.models",
+        "description": "category.models",
+        "isExtraImport": true,
+        "detail": "category.models",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "category.models",
+        "description": "category.models",
+        "isExtraImport": true,
+        "detail": "category.models",
         "documentation": {}
     },
     {
@@ -314,11 +378,19 @@
         "documentation": {}
     },
     {
-        "label": "Category",
-        "importPath": "category.models",
-        "description": "category.models",
+        "label": "product",
+        "importPath": "itertools",
+        "description": "itertools",
         "isExtraImport": true,
-        "detail": "category.models",
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
         "documentation": {}
     },
     {
@@ -587,7 +659,7 @@
         "kind": 5,
         "importPath": "adana.urls",
         "description": "adana.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", home,name=\"home\"),\n]+static(MEDIA_URL,document_root= MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", home,name=\"home\"),\n    path(\"store/\", include('store.urls'))\n]+static(MEDIA_URL,document_root= MEDIA_ROOT)",
         "detail": "adana.urls",
         "documentation": {}
     },
@@ -655,11 +727,20 @@
         "documentation": {}
     },
     {
+        "label": "menu_links",
+        "kind": 2,
+        "importPath": "category.context_proseccors",
+        "description": "category.context_proseccors",
+        "peekOfCode": "def menu_links(request):\n    categories = Category.objects.all()\n    return {\"categories\": categories}",
+        "detail": "category.context_proseccors",
+        "documentation": {}
+    },
+    {
         "label": "Category",
         "kind": 6,
         "importPath": "category.models",
         "description": "category.models",
-        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    description = models.TextField(blank=True)\n    image = models.ImageField(upload_to=\"photo/category/\" ,blank=True)\n    slug = models.SlugField(max_length=50,unique=True)\n    def __str__(self):\n        return self.name",
+        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    description = models.TextField(blank=True)\n    image = models.ImageField(upload_to=\"photo/category/\" ,blank=True)\n    slug = models.SlugField(max_length=50,unique=True)\n    def __str__(self):\n        return self.name\n    def get_url(self):\n        return reverse(\"products_by_category\", args=[self.slug])",
         "detail": "category.models",
         "documentation": {}
     },
@@ -697,6 +778,33 @@
         "description": "store.models",
         "peekOfCode": "class Product(models.Model):\n    name = models.CharField(max_length=100,unique=True)\n    slug = models.SlugField(max_length=100,unique=True)\n    description = models.TextField(max_length=500,blank=True) \n    price = models.IntegerField()    \n    image = models.ImageField(upload_to=\"photo/products\")\n    stock = models.IntegerField(default=100)\n    is_available = models.BooleanField(default=True)\n    category = models.ForeignKey(Category,on_delete=models.CASCADE)\n    created_date = models.DateTimeField(auto_now_add=True)",
         "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "store.urls",
+        "description": "store.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"\",store,name=\"store\"),\n    path(\"<slug:category_slug>/\",store,name=\"products_by_category\"),\n    path(\"<slug:category_slug>/<slug:product_slug>/\",product_slug,name=\"product_detail\"),\n]",
+        "detail": "store.urls",
+        "documentation": {}
+    },
+    {
+        "label": "store",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def store(request,category_slug=None):\n    if category_slug == None:   \n        products = Product.objects.filter(is_available=True)\n    else:\n        categories = get_object_or_404(Category, slug=category_slug)\n        products = Product.objects.filter(is_available=True,category=categories)\n    context = {\n        \"products\": products,\n        \"product_count\": products.count(),\n    }",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "product_slug",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def product_slug(request,category_slug,product_slug):\n    product = get_object_or_404(Product,slug=product_slug,category__slug=category_slug)\n    context = {\n        \"product\": product,\n    }\n    return render(request, \"product_detail.html\",context)",
+        "detail": "store.views",
         "documentation": {}
     },
     {
