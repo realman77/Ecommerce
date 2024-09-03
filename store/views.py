@@ -37,14 +37,11 @@ from django.core.paginator import Paginator
 
 class StoreView(View):
     async def get(self, request, category_slug=None) -> TemplateResponse:
-        sample = AddCartView()
         if category_slug:
             category = await aget_object_or_404(Category, slug=category_slug)
             products = await sync_to_async(Product.objects.filter)(category=category, is_available=True)
-            featured = await sync_to_async(Cart.objects.filter(session_id=await sample._cart_id(request)).exists)()
         if category_slug is None:
             products = await sync_to_async(Product.objects.filter)(is_available=True)
-            featured = await sync_to_async(Cart.objects.filter(session_id=await sample._cart_id(request)).exists)()
         per_page = 3
         paginator = Paginator(products, per_page)
         page_num = await sync_to_async(request.GET.get)("page")
@@ -53,7 +50,6 @@ class StoreView(View):
         print(paginator)
         context = {
             "products": paged_products,
-            'featured': featured,
             'count': per_page,
             }
         return TemplateResponse(request, 'store.html', context)
@@ -74,6 +70,7 @@ class ProductDetailView(View):
 
     async def get(self, request, product_slug):
         product = await aget_object_or_404(Product, slug=product_slug)
+        # color_var = await product.variation_set.color()
         try:
             cart = await Cart.objects.aget(session_id=await self.get_cart(request))
         except Cart.DoesNotExist:
@@ -89,29 +86,22 @@ class ProductDetailView(View):
             "sizes": product.size.all(),
             "colors": product.color.all(),
             'featured': cart_item,
+            # "color_var": color_var,
             }
         return TemplateResponse(request, "product-detail.html", context)
     
 
 class SearchView(View):
-    async def get_cart(self, request):
-        cart = request.session.session_key
-        if cart:
-            return cart
-        cart = None
-        return cart
 
     async def get(self, request):
-        sample = AddCartView()
         keyword = await sync_to_async(request.GET.get)("keyword", "")
         products = await sync_to_async(Product.objects.filter)(Q(name__icontains=keyword) | Q(description__icontains=keyword))
-        featured = await sync_to_async(CartItem.objects.filter(cart__session_id=await self.get_cart(request)).exists)()
         print('-----------------------------------------------------------------')
-        print(featured)
+        # print(products)
         context = {
             "products": products,
-            'featured': featured,
             'count': await sync_to_async(products.count)(),
+            'keyword': keyword
             }
         
         return TemplateResponse(request, "store.html", context)

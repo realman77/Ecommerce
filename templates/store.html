@@ -139,7 +139,7 @@
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
 				<div class="fix-height">
-					<a href="{% url 'product_slug' product.slug %}" class="title">{{product.name}}
+					<a href="{% url 'product_slug' product.slug %}" class="title" style="text-decoration: none; color: black;">{{product.name}}
 						<div class="price-wrap mt-2">
 							<span class="price">{{ product.price|intcomma }}</span>
 							<del class="price-old">{{ product.price|intcomma }}</del>

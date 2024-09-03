@@ -1,10 +1,14 @@
+import asyncio
 from asgiref.sync import sync_to_async
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render, aget_object_or_404
+from django.shortcuts import redirect, aget_object_or_404
+from django.utils.decorators import classonlymethod
 from django.views import View
 from django.template.response import TemplateResponse
+from django.contrib.auth.views import redirect_to_login
 
 from cart.models import Cart, CartItem
 from store.models import Product
@@ -13,6 +17,9 @@ from store.models import Product
 
 class CartView(View):
     async def get(self, request, total=0, tax=0, gen_total=0):
+        
+        if not await sync_to_async(lambda: request.user.is_authenticated)():
+            return redirect("signin")
         cart_items = ''
         try:
             sample = AddCartView()
