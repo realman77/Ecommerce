@@ -63,7 +63,7 @@ class AddCartView(View):
             try:
                 cart_item = CartItem.objects.get(product=product, cart=cart)
                 cart_item.quantity += 1
-                cart_item.asave()
+                cart_item.save()
             except CartItem.DoesNotExist:
                 cart_item = CartItem.objects.create(
                     product=product,
