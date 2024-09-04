@@ -1,6 +1,7 @@
 import keyword
 from django.db.models import Count, Q
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.response import TemplateResponse
 from django.views import View
 from asgiref.sync import sync_to_async
@@ -36,7 +37,10 @@ from django.core.paginator import Paginator
 #         return render(request, "home.html", context)
 
 class StoreView(View):
+
     def get(self, request, category_slug=None) -> TemplateResponse:
+        if not request.user.is_authenticated:
+            return redirect('signin')
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
             products = Product.objects.filter(category=category, is_available=True)
@@ -69,6 +73,8 @@ class ProductDetailView(View):
         return cart
 
     def get(self, request, product_slug):
+        if not request.user.is_authenticated:
+            return redirect("signin")
         product = get_object_or_404(Product, slug=product_slug)
         # color_var = product.variation_set.color()
         try:
@@ -105,3 +111,4 @@ class SearchView(View):
             }
         
         return TemplateResponse(request, "store.html", context)
+    
