@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, aget_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import classonlymethod
 from django.views import View
 from django.template.response import TemplateResponse
@@ -16,16 +16,16 @@ from store.models import Product
 # Create your views here.
 
 class CartView(View):
-    async def get(self, request, total=0, tax=0, gen_total=0):
+    def get(self, request, total=0, tax=0, gen_total=0):
         
-        if not await sync_to_async(lambda: request.user.is_authenticated)():
+        if not request.user.is_authenticated:
             return redirect("signin")
         cart_items = ''
         try:
             sample = AddCartView()
-            cart = await Cart.objects.aget(session_id=await sample._cart_id(request))
-            cart_items = await sync_to_async(CartItem.objects.filter)(cart=cart)
-            gen_total = sum([i.quantity * await sync_to_async(lambda: i.product.price)() async for i in cart_items])
+            cart = Cart.objects.get(session_id=sample._cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart)
+            gen_total = sum([i.quantity * i.product.price for i in cart_items])
             print('--------------------------------------------------------------------------------------------------------------------')
             print(gen_total)
             tax = gen_total/ 100 * 2
@@ -42,34 +42,34 @@ class CartView(View):
 
 
 class AddCartView(View):
-    async def _cart_id(self, request):
+    def _cart_id(self, request):
         cart = request.session.session_key
         if not cart:
-            cart = await request.session.acreate()
+            cart = request.session.create()
         return cart
     
     # add_cart()
-    async def get(self, request, product_id):
+    def get(self, request, product_id):
 
-        product = await aget_object_or_404(Product, id=product_id)
+        product = get_object_or_404(Product, id=product_id)
         if product.stock:
             try:
-                cart = await Cart.objects.aget(session_id=await self._cart_id(request))
+                cart = Cart.objects.get(session_id=self._cart_id(request))
             except Cart.DoesNotExist:
-                cart = await Cart.objects.acreate(session_id=await self._cart_id(request))
+                cart = Cart.objects.create(session_id=self._cart_id(request))
             
-            await cart.asave()
+            cart.save()
 
             try:
-                cart_item = await CartItem.objects.aget(product=product, cart=cart)
+                cart_item = CartItem.objects.get(product=product, cart=cart)
                 cart_item.quantity += 1
-                await cart_item.asave()
+                cart_item.asave()
             except CartItem.DoesNotExist:
-                cart_item = await CartItem.objects.acreate(
+                cart_item = CartItem.objects.create(
                     product=product,
                     cart=cart,
                     quantity=1)
-                await cart_item.asave()
+                cart_item.save()
             
         return redirect(request.META.get("HTTP_REFERER", ""))
         # else:
@@ -77,24 +77,24 @@ class AddCartView(View):
     
 
 class SubtractCartView(View):
-    async def get(self, request, product_id,):
-        product = await aget_object_or_404(Product, id=product_id)
+    def get(self, request, product_id,):
+        product = get_object_or_404(Product, id=product_id)
         sample = AddCartView()
-        cart = await aget_object_or_404(Cart, session_id=await sample._cart_id(request))
-        cart_item = await aget_object_or_404(CartItem, product=product, cart=cart)
+        cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
+        cart_item = get_object_or_404(CartItem, product=product, cart=cart)
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
-            await cart_item.asave()
+            cart_item.save()
         else:
-            await cart_item.adelete()
+            cart_item.delete()
         return redirect("cart")
     
 
 class DeleteCartView(View):
-    async def get(self, request, product_id,):
-        product = await aget_object_or_404(Product, id=product_id)
+    def get(self, request, product_id,):
+        product = get_object_or_404(Product, id=product_id)
         sample = AddCartView()
-        cart = await aget_object_or_404(Cart, session_id=await sample._cart_id(request))
-        cart_item = await aget_object_or_404(CartItem, product=product, cart=cart)   
-        await cart_item.adelete()
+        cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
+        cart_item = get_object_or_404(CartItem, product=product, cart=cart)   
+        cart_item.delete()
         return redirect("cart")

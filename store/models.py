@@ -59,7 +59,7 @@ class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     value = models.CharField(max_length=100,)
-    count = models.IntegerField(blank=True, default=0)
+    count = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,6 +1,6 @@
 import keyword
 from django.db.models import Count, Q
-from django.shortcuts import render, aget_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.template.response import TemplateResponse
 from django.views import View
 from asgiref.sync import sync_to_async
@@ -36,16 +36,16 @@ from django.core.paginator import Paginator
 #         return render(request, "home.html", context)
 
 class StoreView(View):
-    async def get(self, request, category_slug=None) -> TemplateResponse:
+    def get(self, request, category_slug=None) -> TemplateResponse:
         if category_slug:
-            category = await aget_object_or_404(Category, slug=category_slug)
-            products = await sync_to_async(Product.objects.filter)(category=category, is_available=True)
+            category = get_object_or_404(Category, slug=category_slug)
+            products = Product.objects.filter(category=category, is_available=True)
         if category_slug is None:
-            products = await sync_to_async(Product.objects.filter)(is_available=True)
+            products = Product.objects.filter(is_available=True)
         per_page = 3
         paginator = Paginator(products, per_page)
-        page_num = await sync_to_async(request.GET.get)("page")
-        paged_products = await sync_to_async(paginator.get_page)(page_num)
+        page_num = request.GET.get("page")
+        paged_products = paginator.get_page(page_num)
         print('---------------------------------------------------------------')
         print(paginator)
         context = {
@@ -56,28 +56,28 @@ class StoreView(View):
 
 
 class IndexView(View):
-    async def get(self, request):
+    def get(self, request):
         return TemplateResponse(request, "index.html")
     
 
 class ProductDetailView(View):
-    async def get_cart(self, request):
+    def get_cart(self, request):
         cart = request.session.session_key
         if cart:
             return cart
         cart = None
         return cart
 
-    async def get(self, request, product_slug):
-        product = await aget_object_or_404(Product, slug=product_slug)
-        # color_var = await product.variation_set.color()
+    def get(self, request, product_slug):
+        product = get_object_or_404(Product, slug=product_slug)
+        # color_var = product.variation_set.color()
         try:
-            cart = await Cart.objects.aget(session_id=await self.get_cart(request))
+            cart = Cart.objects.get(session_id=self.get_cart(request))
         except Cart.DoesNotExist:
             cart = None
         try:
-            cart_item = await CartItem.objects.aget(product=product, cart=cart)
-            cart_item = await sync_to_async(CartItem.objects.filter(cart__session_id=await self.get_cart(request)).exists)()
+            cart_item = CartItem.objects.get(product=product, cart=cart)
+            cart_item = CartItem.objects.filter(cart__session_id=self.get_cart(request)).exists()
             print(cart_item)
         except CartItem.DoesNotExist:
             cart_item = None
@@ -93,14 +93,14 @@ class ProductDetailView(View):
 
 class SearchView(View):
 
-    async def get(self, request):
-        keyword = await sync_to_async(request.GET.get)("keyword", "")
-        products = await sync_to_async(Product.objects.filter)(Q(name__icontains=keyword) | Q(description__icontains=keyword))
+    def get(self, request):
+        keyword = request.GET.get("keyword", "")
+        products = Product.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword))
         print('-----------------------------------------------------------------')
         # print(products)
         context = {
             "products": products,
-            'count': await sync_to_async(products.count)(),
+            'count': products.count(),
             'keyword': keyword
             }
         

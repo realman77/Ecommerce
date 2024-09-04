@@ -17,7 +17,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     is_active = models.BooleanField(default=True)
-    variations = models.ManyToManyField(Variation, blank=True,)
+    variations = models.ManyToManyField(Variation, blank=True)
 
     def __str__(self):
         return f'{self.product}'
