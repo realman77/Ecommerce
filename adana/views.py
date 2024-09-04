@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views import View
 from django.template.response import TemplateResponse
 
@@ -7,6 +8,8 @@ from store.models import Product
 # First method
 class ProductsView(View):
     def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect("signin")
         products = Product.objects.filter(is_available=True)
         context = {
             "products": products,
