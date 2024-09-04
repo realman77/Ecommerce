@@ -1,6 +1,7 @@
 import keyword
 from django.db.models import Count, Q
-from django.shortcuts import render, aget_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render, aget_object_or_404
 from django.template.response import TemplateResponse
 from django.views import View
 from asgiref.sync import sync_to_async
@@ -37,6 +38,9 @@ from django.core.paginator import Paginator
 
 class StoreView(View):
     async def get(self, request, category_slug=None) -> TemplateResponse:
+        if not await sync_to_async(lambda: request.user.is_authenticated)():
+            return redirect('signin')
+
         if category_slug:
             category = await aget_object_or_404(Category, slug=category_slug)
             products = await sync_to_async(Product.objects.filter)(category=category, is_available=True)
@@ -69,6 +73,8 @@ class ProductDetailView(View):
         return cart
 
     async def get(self, request, product_slug):
+        if not await sync_to_async(lambda: request.user.is_authenticated)():
+            return redirect('signin')
         product = await aget_object_or_404(Product, slug=product_slug)
         # color_var = await product.variation_set.color()
         try:
