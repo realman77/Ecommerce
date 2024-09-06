@@ -27,12 +27,12 @@
                       <a
                         href="{% url 'product_slug' item.product.slug %}"
                         class="title text-dark"
-                        >{{item.product.name}}</a
-                      >
+                        >{{item.product.name}}</a>
+                      {% for var in item.variations.all %}
                       <p class="text-muted small">
-                        {{item.product.properties}} <br />
-                        {{item.product.brand}}
+                        {{var.category}}:{{var.value}}
                       </p>
+                      {% endfor %}
                     </figcaption>
                   </figure>
                 </td>
