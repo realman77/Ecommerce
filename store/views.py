@@ -77,28 +77,29 @@ class ProductDetailView(View):
             return redirect("signin")
         product = get_object_or_404(Product, slug=product_slug)
         # color_var = product.variation_set.color()
-        try:
-            cart = Cart.objects.get(session_id=self.get_cart(request))
-        except Cart.DoesNotExist:
-            cart = None
-        try:
-            cart_item = CartItem.objects.get(product=product, cart=cart)
-            cart_item = CartItem.objects.filter(cart__session_id=self.get_cart(request)).exists()
-            print(cart_item)
-        except CartItem.DoesNotExist:
-            cart_item = None
+        # try:
+        #     cart = Cart.objects.get(session_id=self.get_cart(request))
+        # except Cart.DoesNotExist:
+        #     cart = None
+        # try:
+        #     cart_item = CartItem.objects.get(product=product, cart=cart)
+        #     cart_item = CartItem.objects.filter(cart__session_id=self.get_cart(request)).exists()
+        #     print(cart_item)
+        # except CartItem.DoesNotExist:
+        #     cart_item = None
         context = {
             'product': product,
             "sizes": product.size.all(),
             "colors": product.color.all(),
-            'featured': cart_item,
+            # 'cart_in': cart_item,
             # "color_var": color_var,
             }
         return TemplateResponse(request, "product-detail.html", context)
     
 
 class SearchView(View):
-
+    ''' This class defines a view in a Django application that searches for products based on a keyword
+    provided in the request.'''
     def get(self, request):
         keyword = request.GET.get("keyword", "")
         products = Product.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword))
@@ -109,6 +110,5 @@ class SearchView(View):
             'count': products.count(),
             'keyword': keyword
             }
-        
+
         return TemplateResponse(request, "store.html", context)
-    

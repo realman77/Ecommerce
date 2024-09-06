@@ -42,7 +42,7 @@
                     <div class="input-group input-spinner">
                       <div class="input-group-prepend">
                         <a
-                          href="{% url 'sub_cart' item.product.id %}"
+                          href="{% url 'sub_cart' item.id %}"
                           class="btn btn-light"
                           type="button"
                           id="button-minus"
@@ -57,7 +57,7 @@
                       />
                       <div class="input-group-append">
                         <a
-                          href="{% url 'add_cart' item.product.id %}"
+                          href="{% url 'increment_cart' item.id %}"
                           class="btn btn-light"
                           type="button"
                           id="button-plus"
@@ -80,7 +80,7 @@
                   <!-- price-wrap .// -->
                 </td>
                 <td class="text-right">
-                  <a href="{% url 'del_cart' item.product.id %}" class="btn btn-danger"> Remove</a>
+                  <a href="{% url 'del_cart' item.id %}" class="btn btn-danger"> Remove</a>
                 </td>
               </tr>
               {% endfor %}

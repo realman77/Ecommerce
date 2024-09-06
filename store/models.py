@@ -40,18 +40,21 @@ class Product(models.Model):
 
 
 class VariationManager(models.Manager):
-    def colors(self):
-        print("-------------------------------------*************************************")
-        print(super(VariationManager, self).filter(category="Color", is_active=True))
-        print(super(VariationManager, self).all())
-        return super(VariationManager, self).filter(category="Color", is_active=True)
-    def sizes(self):
-        return super(VariationManager, self).filter(category='Size', is_active=True)
+    def all_types(self):
+        manager = super(VariationManager, self)
+        types = [i[0] for i in manager.values_list("category").distinct()]
+
+        res = {}
+
+        for cat_name in types:
+            res[cat_name] = manager.filter(category=cat_name, is_active=True)
+        return res
 
 
 CATEGORY_CHOICES = (
-    ("Color", ("Color")),
-    ("Size", ("Size")),
+    ("Color", "Color"),
+    ("Size", "Size"),
+    ('Material', 'Material')
 )
 
 

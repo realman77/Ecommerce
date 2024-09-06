@@ -9,9 +9,11 @@ from django.utils.decorators import classonlymethod
 from django.views import View
 from django.template.response import TemplateResponse
 from django.contrib.auth.views import redirect_to_login
+from django.db.models import Count
 
 from cart.models import Cart, CartItem
-from store.models import Product
+import category
+from store.models import Product, Variation
 
 # Create your views here.
 
@@ -49,8 +51,16 @@ class AddCartView(View):
         return cart
     
     # add_cart()
-    def get(self, request, product_id):
-
+    def post(self, request, product_id):
+        print('request.POST', request.POST)
+        data = dict(request.POST)
+        data.pop('csrfmiddlewaretoken')
+        variations = []
+        for cat, value in data.items():
+            var = Variation.objects.get(category=cat, value=value[0])
+            variations.append(var)
+        # variations = []
+        print(variations)
         product = get_object_or_404(Product, id=product_id)
         if product.stock:
             try:
@@ -61,40 +71,51 @@ class AddCartView(View):
             cart.save()
 
             try:
-                cart_item = CartItem.objects.get(product=product, cart=cart)
+                cart_item = CartItem.objects.filter(product=product, cart=cart, variations__in=variations).annotate(num=Count('variations')).get(num=len(variations))
                 cart_item.quantity += 1
                 cart_item.save()
             except CartItem.DoesNotExist:
                 cart_item = CartItem.objects.create(
                     product=product,
                     cart=cart,
-                    quantity=1)
+                    quantity=1
+                )
+                cart_item.variations.set(variations)
                 cart_item.save()
-            
+
         return redirect(request.META.get("HTTP_REFERER", ""))
         # else:
         #     return redirect("store")
-    
+    # def get(self, request, product_id):
+
 
 class SubtractCartView(View):
-    def get(self, request, product_id,):
-        product = get_object_or_404(Product, id=product_id)
-        sample = AddCartView()
-        cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
-        cart_item = get_object_or_404(CartItem, product=product, cart=cart)
+    def get(self, request, item_id):
+        # product = get_object_or_404(Product, id=item_id)
+        # sample = AddCartView()
+        # cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
+        cart_item = CartItem.objects.get(pk=item_id)
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
         else:
             cart_item.delete()
         return redirect("cart")
-    
+
+
+class IncrementCartView(View):
+    def get(self, request, item_id):
+        # product = get_object_or_404(Product, id=item_id)
+        # sample = AddCartView()
+        # cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
+        cart_item = CartItem.objects.get(pk=item_id)
+        cart_item.quantity += 1
+        cart_item.save()
+        return redirect("cart")
+
 
 class DeleteCartView(View):
-    def get(self, request, product_id,):
-        product = get_object_or_404(Product, id=product_id)
-        sample = AddCartView()
-        cart = get_object_or_404(Cart, session_id=sample._cart_id(request))
-        cart_item = get_object_or_404(CartItem, product=product, cart=cart)   
+    def get(self, request, item_id,):
+        cart_item = get_object_or_404(CartItem, pk=item_id)   
         cart_item.delete()
         return redirect("cart")
