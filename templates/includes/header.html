@@ -21,6 +21,13 @@
 
 
 </head>
+<style>
+	@media (max-width: 576px) {
+		.my_margin {
+			margin-bottom: 10px;
+		}
+	}
+</style>
 
 <body>
 
@@ -80,10 +87,10 @@
 		</div>  <!-- category-wrap.// -->
 	</div> <!-- col.// -->
 	<div class="col-lg-1 col-sm-2 col-md-2 text-right">
-		<a href='{% url "store" %}' class="btn btn-outline-primary">Store</a>
+		<a href='{% url "store" %}' class="btn btn-outline-primary my_margin">Store</a>
 	</div>
 	<div class="col-lg col-sm-10 col-md-9">
-		<form action="{% url 'search' %}" class="search" method="get">
+		<form action="{% url 'search' %}" class="search m-0" method="get">
 			<div class="input-group w-100">
 			    <input type="text" class="form-control" name="keyword" value="{{keyword}}" style="width:60%;" placeholder="Search">
 			    
@@ -95,8 +102,8 @@
 		    </div>
 		</form> <!-- search-wrap .end// -->
 	</div> <!-- col.// -->
-	<div class="col-lg-3 col-sm-12 col-md-3 col-8 order-2 order-lg-3">
-				<div class="d-flex justify-content-end mb-3 mb-lg-0">
+	<div class="col-lg-3 col-sm-12 col-md-3 col-8 order-2 ml-auto order-lg-3">
+				<div class="d-flex justify-content-end my-3 mb-lg-0">
 					<div class="widget-header">
 						{% if user.is_authenticated %}
 						<small class="title text-muted">Welcome {{user.first_name}}!</small>
