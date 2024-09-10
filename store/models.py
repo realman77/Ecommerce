@@ -1,9 +1,10 @@
 from django.db import models
 
-from asgiref.sync import sync_to_async
 from category.models import Category
 
 # Create your models here.
+
+
 class Size(models.Model):
     size = models.CharField(max_length=25)
 
@@ -20,7 +21,7 @@ class Color(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    slug  = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=999999999, decimal_places=2, blank=False, null=False)
     # decimal_places = models.DecimalField()
