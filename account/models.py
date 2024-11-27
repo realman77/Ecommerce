@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class City(models.Model):
     name = models.CharField(max_length=100)
     
@@ -42,7 +43,6 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)  # Save the user to the database
         return user
 
-
     def create_superuser(self, first_name, last_name, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
@@ -59,6 +59,7 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
 
         return user
+
 
 class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=50)

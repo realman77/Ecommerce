@@ -56,11 +56,11 @@ class AddCartView(View):
         data = dict(request.POST)
         data.pop('csrfmiddlewaretoken')
         variations = []
-        for cat, value in data.items():
-            var = Variation.objects.get(category=cat, value=value[0])
+        for category, value in data.items():
+            var = Variation.objects.get(category=category, value=value[0], product__id=product_id)
             variations.append(var)
         # variations = []
-        print(variations)
+        print('variations', variations)
         product = get_object_or_404(Product, id=product_id)
         if product.stock:
             try:
@@ -83,7 +83,7 @@ class AddCartView(View):
                 cart_item.variations.set(variations)
                 cart_item.save()
 
-        return redirect(request.META.get("HTTP_REFERER", ""))
+        return redirect('product_slug', product.slug)
         # else:
         #     return redirect("store")
     # def get(self, request, product_id):

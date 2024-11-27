@@ -1,6 +1,6 @@
 import keyword
 from django.db.models import Count, Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.response import TemplateResponse
 from django.views import View
@@ -9,7 +9,7 @@ from asgiref.sync import sync_to_async
 from cart.models import Cart, CartItem
 from cart.views import AddCartView
 from category.models import Category
-from .models import Product
+from .models import Comments, Product
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -46,7 +46,7 @@ class StoreView(View):
             products = Product.objects.filter(category=category, is_available=True)
         if category_slug is None:
             products = Product.objects.filter(is_available=True)
-        per_page = 3
+        per_page = 12
         paginator = Paginator(products, per_page)
         page_num = request.GET.get("page")
         paged_products = paginator.get_page(page_num)
@@ -76,6 +76,8 @@ class ProductDetailView(View):
         if not request.user.is_authenticated:
             return redirect("signin")
         product = get_object_or_404(Product, slug=product_slug)
+        comments = Comments.objects.filter(product__slug=product_slug)
+        # print(comments)
         # color_var = product.variation_set.color()
         # try:
         #     cart = Cart.objects.get(session_id=self.get_cart(request))
@@ -91,6 +93,7 @@ class ProductDetailView(View):
             'product': product,
             "sizes": product.size.all(),
             "colors": product.color.all(),
+            'comments': comments,
             # 'cart_in': cart_item,
             # "color_var": color_var,
             }
@@ -112,3 +115,24 @@ class SearchView(View):
             }
 
         return TemplateResponse(request, "store.html", context)
+
+
+class CommentView(View):
+    # def get(self, request):
+    #     pass
+    
+    def post(self, request, product_id):
+        print("Comment -------------")
+        subject = request.POST.get("subject")
+        body = request.POST.get('body')
+        if body and subject:
+            comment = Comments()
+            comment.user = request.user
+            comment.subject = request.POST.get("subject")
+            comment.message = request.POST.get("body")
+            product = Product.objects.get(id=product_id)
+            comment.product = product
+            comment.save()
+            return HttpResponseRedirect(request.META.get("HTTP_REFERER", ""))
+        else:
+            return HttpResponse('Lol')

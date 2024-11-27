@@ -1,8 +1,12 @@
+from itertools import product
 from django.db import models
-
+from django.contrib.auth import get_user_model
 from category.models import Category
 
 # Create your models here.
+
+
+User = get_user_model()
 
 
 class Size(models.Model):
@@ -63,7 +67,6 @@ class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     value = models.CharField(max_length=100,)
-    count = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -72,3 +75,16 @@ class Variation(models.Model):
 
     def __str__(self) -> str:
         return f'{self.product.name} {self.category} {self.value}'
+
+
+class Comments(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    subject = models.CharField(max_length=256, blank=True, null=True)
+    message = models.TextField(blank=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f"{self.user}, {self.message}, {self.product}"
+    

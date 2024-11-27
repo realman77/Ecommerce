@@ -32,7 +32,13 @@ class VariationAdmin(admin.ModelAdmin):
     list_filter = ("product", "category")
 
 
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ("id", 'product', 'user', 'created_at')
+    
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Size)
 admin.site.register(Color)
 admin.site.register(Variation, VariationAdmin)
+admin.site.register(Comments, CommentsAdmin)

@@ -4,6 +4,7 @@ from cart.models import *
 
 # Register your models here.
 
+
 class CartAdmin(admin.ModelAdmin):
     list_display = ('id', 'session_id', "date_added",)
     list_display_links = ('id', 'session_id', "date_added",)

@@ -4,6 +4,7 @@ from .models import Account, City, Country
 
 # Register your models here.
 
+
 class AccountAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'email', "username", "last_login", "date_joined", 'is_active', 'is_staff', 'is_superadmin')
     list_display_links = ("first_name", "last_name", "email",)

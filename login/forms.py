@@ -16,11 +16,11 @@ class RegistrationForm(UserCreationForm):
         }
 
     gender = forms.ChoiceField(
-    choices=[('1', 'Male'), ('0', 'Female')],
-    widget=forms.RadioSelect,
-    required=False, # Make gender optional if needed
-    label=''
-)
+        choices=[('1', 'Male'), ('0', 'Female')],
+        widget=forms.RadioSelect,
+        required=False, # Make gender optional if needed
+        label=''
+    )
 
     # GENDER_CHOICES = [
     #     ('male', 'Male'),
@@ -38,4 +38,3 @@ class RegistrationForm(UserCreationForm):
 
     city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Choose...")
     country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Choose...")
-
