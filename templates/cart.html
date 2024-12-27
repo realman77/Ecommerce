@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content%}
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content %}
 <section class="section-content padding-y bg">
   <div class="container">
     <!-- ============================ COMPONENT 1 ================================= -->
@@ -106,18 +106,18 @@
               <dd class="text-right text-dark b"><strong>{{gen_total|intcomma}} so'm</strong></dd>
             </dl>
             <hr />
-            <p class="text-center mb-3">
+            <!-- <p class="text-center mb-3">
               <img
                 src='{% static "./images/misc/payments.png" %}'
                 height="26"
               />
-            </p>
-            <a
+            </p> -->
+            <!-- <a
               href='{% url "place-order" %}'
               class="btn btn-primary btn-block"
             >
               Checkout
-            </a>
+            </a> -->
             <a
               href='{% url "store" %}'
               class="btn btn-light btn-block"

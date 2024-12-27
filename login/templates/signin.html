@@ -13,10 +13,10 @@
       <form method="post" action="{% url 'signin' %}">
         {% csrf_token %}
         {{form|crispy}}
-          <div class="form-group">
+          <!-- <div class="form-group">
           	<a href="#" class="float-right">Forgot password?</a> 
            
-          </div> <!-- form-group form-check .// -->
+          </div> form-group form-check .// -->
           <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block"> Login  </button>
           </div> <!-- form-group// -->    

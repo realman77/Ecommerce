@@ -28,8 +28,8 @@ class CartView(View):
             cart = Cart.objects.get(session_id=sample._cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart)
             gen_total = sum([i.quantity * i.product.price for i in cart_items])
-            print('--------------------------------------------------------------------------------------------------------------------')
-            print(gen_total)
+            # print('--------------------------------------------------------------------------------------------------------------------')
+            # print(gen_total)
             tax = gen_total/ 100 * 2
             total = gen_total - tax
         except ObjectDoesNotExist:
